@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Presos Políticos</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 0; padding: 20px; color: #333; }
+        h1 { text-align: center; color: #222; margin-bottom: 30px; }
+        .galeria { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .tarjeta { background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 280px; overflow: hidden; display: flex; flex-direction: column; }
+        .tarjeta img { width: 100%; height: 250px; object-fit: cover; }
+        .info { padding: 15px; flex-grow: 1; }
+        .nombre { font-size: 1.3em; font-weight: bold; margin: 0 0 10px 0; color: #111; }
+        .datos { font-size: 0.9em; color: #666; margin-bottom: 8px; }
+        .btn-compartir { display: block; text-align: center; background-color: #1da1f2; color: white; padding: 10px; text-decoration: none; font-weight: bold; border-top: 1px solid #eee; transition: background 0.2s; }
+        .btn-compartir:hover { background-color: #0d8bd9; }
+    </style>
+</head>
+<body>
+
+    <h1>Galería de Presos Políticos</h1>
+
+    <div class="galeria">
+
+        <!-- PERSONA 1 -->
+        <div class="tarjeta">
+            <img src="foto1.png" alt="Preso Político">
+            <div class="info">
+                <div class="nombre">Persona 1</div>
+                <div class="datos"><strong>Detención:</strong> Fecha aquí</div>
+                <div class="datos"><strong>Estatus:</strong> Información aquí</div>
+                <p>Breve resumen o historia de la persona 1 aquí.</p>
+            </div>
+            <a href="https://twitter.com:" target="_blank" class="btn-compartir">Compartir en X</a>
+        </div>
+
+        <!-- PERSONA 2 -->
+        <div class="tarjeta">
+            <img src="foto2.png" alt="Preso Político">
+            <div class="info">
+                <div class="nombre">Persona 2</div>
+                <div class="datos"><strong>Detención:</strong> Fecha aquí</div>
+                <div class="datos"><strong>Estatus:</strong> Información aquí</div>
+                <p>Breve resumen o historia de la persona 2 aquí.</p>
+            </div>
+            <a href="https://twitter.com:" target="_blank" class="btn-compartir">Compartir en X</a>
+        </div>
+
+        <!-- PERSONA 3 -->
+        <div class="tarjeta">
+            <img src="foto3.png" alt="Preso Político">
+            <div class="info">
+                <div class="nombre">Persona 3</div>
+                <div class="datos"><strong>Detención:</strong> Fecha aquí</div>
+                <div class="datos"><strong>Estatus:</strong> Información aquí</div>
+                <p>Breve resumen o historia de la persona 3 aquí.</p>
+            </div>
+            <a href="https://twitter.com:" target="_blank" class="btn-compartir">Compartir en X</a>
+        </div>
+
+        <!-- PERSONA 4 -->
+        <div class="tarjeta">
+            <img src="foto4.png" alt="Preso Político">
+            <div class="info">
+                <div class="nombre">Persona 4</div>
+                <div class="datos"><strong>Detención:</strong> Fecha aquí</div>
+                <div class="datos"><strong>Estatus:</strong> Información aquí</div>
+                <p>Breve resumen o historia de la persona 4 aquí.</p>
+            </div>
+            <a href="https://twitter.com:" target="_blank" class="btn-compartir">Compartir en X</a>
+        </div>
+
+        <!-- PERSONA 5 -->
+        <div class="tarjeta">
+            <img src="foto5.png" alt="Preso Político">
+            <div class="info">
+                <div class="nombre">Persona 5</div>
+                <div class="datos"><strong>Detención:</strong> Fecha aquí</div>
+                <div class="datos"><strong>Estatus:</strong> Información aquí</div>
+                <p>Breve resumen o historia de la persona 5 aquí.</p>
+            </div>
+            <a href="https://twitter.com:" target="_blank" class="btn-compartir">Compartir en X</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
