@@ -1,0 +1,30 @@
+{{ define "main" }}
+<header class="section-header">
+  {{ if eq .Kind "term" }}
+    <p class="kicker">Etiqueta</p>
+  {{ end }}
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+  {{ with .Content }}
+    <div class="entry-body section-intro">{{ . }}</div>
+  {{ end }}
+</header>
+
+{{ $pages := .RegularPages }}
+{{ if eq .Kind "term" }}
+  {{ $pages = .Pages }}
+{{ end }}
+{{ $pages = $pages.ByDate.Reverse }}
+
+{{ if gt (len $pages) 0 }}
+  {{ $paginator := .Paginate $pages }}
+  <ol class="index">
+    {{ range $paginator.Pages }}
+      {{ partial "ficha.html" . }}
+    {{ end }}
+  </ol>
+  {{ partial "pagination.html" $ }}
+{{ else }}
+  <p class="vacio">Aún no hay textos aquí.</p>
+{{ end }}
+{{ end }}

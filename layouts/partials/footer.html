@@ -1,0 +1,13 @@
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    {{ partial "subscribe.html" (dict "id" "pie" "lugar" "pie") }}
+    <div class="colofon">
+      <p>{{ site.Title }}</p>
+      <p>{{ site.Params.author }}</p>
+      {{ with site.Params.x }}
+        <p><a rel="me" href="{{ . }}">{{ site.Params.author }} en X</a></p>
+      {{ end }}
+      <p class="fine">{{ now.Format "2006" }}</p>
+    </div>
+  </div>
+</footer>

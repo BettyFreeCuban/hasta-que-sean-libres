@@ -1,0 +1,22 @@
+{{ define "main" }}
+<p class="kicker">Cuaderno</p>
+{{ with (.Description | default site.Params.description) }}
+  <p class="lede">{{ . }}</p>
+{{ end }}
+{{ with .Content }}
+  <div class="entry-body home-note">{{ . }}</div>
+{{ end }}
+
+{{ $posts := where site.RegularPages "Section" "in" (slice "voces" "reflexiones" "poemas") }}
+{{ $posts = $posts.ByDate.Reverse }}
+
+{{ if gt (len $posts) 0 }}
+  <ol class="index">
+    {{ range first 8 $posts }}
+      {{ partial "ficha.html" . }}
+    {{ end }}
+  </ol>
+{{ else }}
+  <p class="vacio">Todavía no hay textos publicados.</p>
+{{ end }}
+{{ end }}

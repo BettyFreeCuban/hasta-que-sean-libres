@@ -1,0 +1,35 @@
+{{ $user := site.Params.buttondown | default "" }}
+{{ $valid := findRE "^[A-Za-z0-9][A-Za-z0-9_-]{0,80}$" $user }}
+{{ if $valid }}
+  <section class="subscribe" aria-labelledby="suscripcion-titulo-{{ .id }}">
+    <h2 id="suscripcion-titulo-{{ .id }}">
+      {{- if eq .lugar "entrada" }}Seguir este cuaderno{{ else }}Recibir el cuaderno{{ end -}}
+    </h2>
+    <p>Si quieres los textos nuevos, deja tu correo. Nada de comentarios en la página.</p>
+    <form
+      action="https://buttondown.com/api/emails/embed-subscribe/{{ $user }}"
+      method="post"
+      accept-charset="utf-8"
+    >
+      <label class="sr-only" for="correo-{{ .id }}">Correo electrónico</label>
+      <input
+        id="correo-{{ .id }}"
+        type="email"
+        name="email"
+        required
+        autocomplete="email"
+        inputmode="email"
+        maxlength="320"
+        placeholder="tu@correo.com"
+      >
+      <input type="hidden" name="embed" value="1">
+      <input type="hidden" name="utm_source" value="hasta-que-sean-libres">
+      <input type="hidden" name="utm_medium" value="formulario">
+      <input type="hidden" name="utm_campaign" value="{{ .lugar | default "cuaderno" }}">
+      <button type="submit">Suscribirme</button>
+    </form>
+    <p class="fine">El correo se envía a <a href="https://buttondown.com/{{ $user }}">Buttondown</a>. Desde allí confirmas la suscripción.</p>
+  </section>
+{{ else if hugo.IsServer }}
+  <p class="vacio">Para mostrar la suscripción, escribe tu usuario en <code>params.buttondown</code> dentro de hugo.toml.</p>
+{{ end }}

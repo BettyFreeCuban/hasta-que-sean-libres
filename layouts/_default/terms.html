@@ -1,0 +1,17 @@
+{{ define "main" }}
+<header class="section-header">
+  <h1>Etiquetas</h1>
+</header>
+{{ if gt (len .Data.Terms) 0 }}
+  <ul class="etiquetas">
+    {{ range .Data.Terms.ByCount }}
+      <li>
+        <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+        <span>{{ .Count }}</span>
+      </li>
+    {{ end }}
+  </ul>
+{{ else }}
+  <p class="vacio">Aún no hay etiquetas.</p>
+{{ end }}
+{{ end }}

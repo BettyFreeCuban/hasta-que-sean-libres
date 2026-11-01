@@ -1,0 +1,27 @@
+<header class="site-header">
+  <div class="site-header-inner">
+    {{ if .IsHome }}
+      <h1 class="marca">
+        {{ partial "emblema.html" . }}
+        <span>{{ site.Title }}</span>
+      </h1>
+    {{ else }}
+      <a class="marca" href="{{ site.Home.RelPermalink }}">
+        {{ partial "emblema.html" . }}
+        <span>{{ site.Title }}</span>
+      </a>
+    {{ end }}
+    <nav aria-label="Secciones">
+      <ul>
+        {{ $page := . }}
+        {{ range site.Menus.main }}
+          {{ $href := .URL }}
+          {{ with .Page }}{{ $href = .RelPermalink }}{{ end }}
+          <li>
+            <a href="{{ $href }}"{{ if or ($page.IsMenuCurrent "main" .) ($page.HasMenuCurrent "main" .) }} aria-current="page"{{ end }}>{{ .Name }}</a>
+          </li>
+        {{ end }}
+      </ul>
+    </nav>
+  </div>
+</header>

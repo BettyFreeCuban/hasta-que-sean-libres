@@ -1,0 +1,59 @@
+{{ define "main" }}
+<article class="entry">
+  <header class="entry-header">
+    {{ with .Section }}
+      {{ with site.GetPage (printf "/%s" .) }}
+        <p class="kicker"><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>
+      {{ end }}
+    {{ end }}
+    <h1>{{ .Title }}</h1>
+    <p class="meta">
+      {{ partial "fecha.html" $.Date }}
+      {{ if not $.Params.hide_author }}
+        <span class="meta-sep" aria-hidden="true">·</span>
+        <span>{{ $.Params.author | default site.Params.author }}</span>
+      {{ end }}
+    </p>
+  </header>
+
+  {{ if .Params.toc }}
+    <div class="toc">
+      {{ .TableOfContents }}
+    </div>
+  {{ end }}
+
+  <div class="entry-body">
+    {{ .Content }}
+  </div>
+
+  {{ if .Section }}
+    {{ $here := .RelPermalink }}
+    {{ $siblings := where (where site.RegularPages "Section" .Section) "RelPermalink" "ne" $here }}
+    {{ with first 3 ($siblings.ByDate.Reverse) }}
+      <aside class="mas">
+        <h2>También en esta sección</h2>
+        <ul>
+          {{ range . }}
+            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+          {{ end }}
+        </ul>
+      </aside>
+    {{ end }}
+  {{ end }}
+
+  {{ partial "subscribe.html" (dict "id" "entrada" "lugar" "entrada") }}
+</article>
+
+{{ $tipo := "BlogPosting" }}
+{{ if eq .Section "poemas" }}{{ $tipo = "Poem" }}{{ end }}
+{{ $datos := dict
+  "@context" "https://schema.org"
+  "@type" $tipo
+  "headline" .Title
+  "datePublished" (.Date.Format "2006-01-02")
+  "inLanguage" "es"
+  "author" (dict "@type" "Person" "name" (.Params.author | default site.Params.author))
+  "mainEntityOfPage" .Permalink
+}}
+<script type="application/ld+json">{{ $datos | jsonify | safeJS }}</script>
+{{ end }}
